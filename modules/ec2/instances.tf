@@ -1,8 +1,10 @@
 resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+  count         = "${var.ec2_count}"
+  ami           = "${var.ami_id}"
+  instance_type = "${var.instance_type}"
+  subnet_id     = "${var.subnet_id}"
 
-  tags = {
+  tags {
     Name = "ExampleAppServerInstance"
   }
 }
